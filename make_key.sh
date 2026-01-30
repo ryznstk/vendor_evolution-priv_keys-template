@@ -6,4 +6,4 @@
 set -u
 bash <(sed "s/2048/${2:-2048}/;/Enter password/,+1d" ../../../development/tools/make_key) \
     $1 \
-    '/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
+    '/C=ID/ST=Yogyakarta/L=Bantul/O=Agus/OU=Mahard/CN=Dika/emailAddress=agusmhrd1k4@gmail.com'
