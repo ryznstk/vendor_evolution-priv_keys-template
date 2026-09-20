@@ -1,6 +1,10 @@
 # SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 
+AVB_CUSTOM_KEY_PATH := vendor/evolution-priv/keys/avb.pk8
+AVB_CUSTOM_ALGORITHM := SHA256_RSA4096
+WITH_AVB ?= false
+
 PRODUCT_CERTIFICATE_OVERRIDES := \
     com.android.adbd:com.android.adbd.certificate.override \
     com.android.adservices:com.android.adservices.certificate.override \
@@ -20,18 +24,19 @@ PRODUCT_CERTIFICATE_OVERRIDES := \
     com.android.devicelock:com.android.devicelock.certificate.override \
     com.android.extservices:com.android.extservices.certificate.override \
     com.android.hardware.authsecret:com.android.hardware.authsecret.certificate.override \
-    com.android.hardware.biometrics.face.virtual:com.android.hardware.biometrics.face.virtual.override \
-    com.android.hardware.biometrics.fingerprint.virtual:com.android.hardware.biometrics.fingerprint.virtual.override \
+    com.android.hardware.biometrics.face.virtual:com.android.hardware.biometrics.face.virtual.certificate.override \
+    com.android.hardware.biometrics.fingerprint.virtual:com.android.hardware.biometrics.fingerprint.virtual.certificate.override \
     com.android.hardware.boot:com.android.hardware.boot.certificate.override \
-    com.android.hardware.cas:com.android.hardware.cas.override \
+    com.android.hardware.cas:com.android.hardware.cas.certificate.override \
     com.android.hardware.contexthub:com.android.hardware.contexthub.certificate.override \
+    com.android.hardware.drm.clearkey:com.android.hardware.drm.clearkey.certificate.override \
     com.android.hardware.dumpstate:com.android.hardware.dumpstate.certificate.override \
     com.android.hardware.gatekeeper.nonsecure:com.android.hardware.gatekeeper.nonsecure.certificate.override \
     com.android.hardware.neuralnetworks:com.android.hardware.neuralnetworks.certificate.override \
     com.android.hardware.power:com.android.hardware.power.certificate.override \
     com.android.hardware.rebootescrow:com.android.hardware.rebootescrow.certificate.override \
     com.android.hardware.thermal:com.android.hardware.thermal.certificate.override \
-    com.android.hardware.threadnetwork:com.android.hardware.threadnetwork.override \
+    com.android.hardware.threadnetwork:com.android.hardware.threadnetwork.certificate.override \
     com.android.hardware.uwb:com.android.hardware.uwb.certificate.override \
     com.android.hardware.vibrator:com.android.hardware.vibrator.certificate.override \
     com.android.hardware.wifi:com.android.hardware.wifi.certificate.override \
@@ -46,6 +51,7 @@ PRODUCT_CERTIFICATE_OVERRIDES := \
     com.android.networkstack.tethering:com.android.networkstack.tethering.certificate.override \
     com.android.neuralnetworks:com.android.neuralnetworks.certificate.override \
     com.android.nfcservices:com.android.nfcservices.certificate.override \
+    com.android.npumanager:com.android.npumanager.certificate.override \
     com.android.ondevicepersonalization:com.android.ondevicepersonalization.certificate.override \
     com.android.os.statsd:com.android.os.statsd.certificate.override \
     com.android.permission:com.android.permission.certificate.override \
@@ -67,6 +73,7 @@ PRODUCT_CERTIFICATE_OVERRIDES := \
     com.android.uwb.resources:com.android.uwb.resources.certificate.override \
     com.android.virt:com.android.virt.certificate.override \
     com.android.vndk.current:com.android.vndk.current.certificate.override \
+    com.android.webapp:com.android.webapp.certificate.override \
     com.android.wifi:com.android.wifi.certificate.override \
     com.android.wifi.dialog:com.android.wifi.dialog.certificate.override \
     com.android.wifi.resources:com.android.wifi.resources.certificate.override \
@@ -83,6 +90,9 @@ PRODUCT_CERTIFICATE_OVERRIDES += \
     ServiceConnectivityResources:com.android.connectivity.resources.certificate.override \
     ServiceUwbResources:com.android.uwb.resources.certificate.override \
     ServiceWifiResources:com.android.wifi.resources.certificate.override \
+    TelecomServiceResources:com.android.telecom.resources.certificate.override \
+    TelecomUi:com.android.telecomui.certificate.override \
+    WebAppService:com.android.webapp.certificate.override \
     WifiDialog:com.android.wifi.dialog.certificate.override
 
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/evolution-priv/keys/releasekey
